@@ -5,7 +5,8 @@ import { Nosotros } from './paginas/Nosotros'
 import { Productos } from './paginas/Productos'
 import { Detalle } from './paginas/Detalle'
 import { FormContacto } from './paginas/Contacto' 
-import {Navbar} from './componentes/Navbar'
+import { Navbar } from './componentes/navbar'
+import { Footer } from './componentes/Footer'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/productos/:id' element={<Detalle/>}></Route>
         <Route path='/contacto' element={<FormContacto/>}></Route>
       </Routes>
+      <Footer/>
       
     </>
   )

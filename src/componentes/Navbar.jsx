@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { useTheme } from "../context/themeContext"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <nav className="bg-gray-900 text-white shadow-md sticky top-0 z-50">
@@ -38,8 +41,7 @@ export function Navbar() {
             to="/"
             end
             className={({ isActive }) =>
-              `hover:text-yellow-400 transition-colors ${
-                isActive ? "text-yellow-400 font-medium" : ""
+              `hover:text-yellow-400 transition-colors ${isActive ? "text-yellow-400 font-medium" : ""
               }`
             }
           >
@@ -48,8 +50,7 @@ export function Navbar() {
           <NavLink
             to="/nosotros"
             className={({ isActive }) =>
-              `hover:text-yellow-400 transition-colors ${
-                isActive ? "text-yellow-400 font-medium" : ""
+              `hover:text-yellow-400 transition-colors ${isActive ? "text-yellow-400 font-medium" : ""
               }`
             }
           >
@@ -58,8 +59,7 @@ export function Navbar() {
           <NavLink
             to="/productos"
             className={({ isActive }) =>
-              `hover:text-yellow-400 transition-colors ${
-                isActive ? "text-yellow-400 font-medium" : ""
+              `hover:text-yellow-400 transition-colors ${isActive ? "text-yellow-400 font-medium" : ""
               }`
             }
           >
@@ -68,13 +68,13 @@ export function Navbar() {
           <NavLink
             to="/contacto"
             className={({ isActive }) =>
-              `hover:text-yellow-400 transition-colors ${
-                isActive ? "text-yellow-400 font-medium" : ""
+              `hover:text-yellow-400 transition-colors ${isActive ? "text-yellow-400 font-medium" : ""
               }`
             }
           >
             Contacto
           </NavLink>
+
         </div>
       </div>
 
@@ -86,8 +86,7 @@ export function Navbar() {
             end
             onClick={closeMenu}
             className={({ isActive }) =>
-              `hover:text-yellow-400 transition-colors ${
-                isActive ? "text-yellow-400 font-medium" : ""
+              `hover:text-yellow-400 transition-colors ${isActive ? "text-yellow-400 font-medium" : ""
               }`
             }
           >
@@ -97,8 +96,7 @@ export function Navbar() {
             to="/nosotros"
             onClick={closeMenu}
             className={({ isActive }) =>
-              `hover:text-yellow-400 transition-colors ${
-                isActive ? "text-yellow-400 font-medium" : ""
+              `hover:text-yellow-400 transition-colors ${isActive ? "text-yellow-400 font-medium" : ""
               }`
             }
           >
@@ -108,8 +106,7 @@ export function Navbar() {
             to="/productos"
             onClick={closeMenu}
             className={({ isActive }) =>
-              `hover:text-yellow-400 transition-colors ${
-                isActive ? "text-yellow-400 font-medium" : ""
+              `hover:text-yellow-400 transition-colors ${isActive ? "text-yellow-400 font-medium" : ""
               }`
             }
           >
@@ -119,8 +116,7 @@ export function Navbar() {
             to="/contacto"
             onClick={closeMenu}
             className={({ isActive }) =>
-              `hover:text-yellow-400 transition-colors ${
-                isActive ? "text-yellow-400 font-medium" : ""
+              `hover:text-yellow-400 transition-colors ${isActive ? "text-yellow-400 font-medium" : ""
               }`
             }
           >
@@ -128,6 +124,12 @@ export function Navbar() {
           </NavLink>
         </div>
       )}
+      <button
+        onClick={toggleTheme}
+        className="px-4 py-2 rounded-md border hover:opacity-90 transition"
+      >
+        Cambiar a {theme === "dark" ? "Light" : "Dark"}
+      </button>
     </nav>
   );
 }

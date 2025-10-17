@@ -1,10 +1,14 @@
 import { usersData } from "../assets/usuarios"
 import { UserCard } from "../componentes/UserCard"
 import { useTheme } from "../context/themeContext"
+import { useUser } from "../context/userContext";
+import { Link } from "react-router-dom";
 
 export function Inicio() {
+    //iniciamos Usurario del contexto User
+    const { isAuthenticated } = useUser()
 
-    const { theme} = useTheme();
+    const { theme } = useTheme();
 
     console.log(UserCard)
     return (
@@ -20,11 +24,24 @@ export function Inicio() {
             </ul>
 
             {/* APLICA ESTAS CLASES: grid, md:grid-cols-1, lg:grid-cols-2 y gap-4 */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {usersData.map((user) =>
-                    <UserCard key={user.id} imagen={user.imageLink} nombre={user.fullName} cargo={user.position} />
-                )}
-            </div>
+            {isAuthenticated ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {usersData.map((user) =>
+                        <UserCard key={user.id} imagen={user.imageLink} nombre={user.fullName} cargo={user.position} />
+                    )}
+                </div>
+            ):
+            (
+                <div>
+                    Debes Loguearte para poder ver el contenido
+                </div>
+            )
+            }
+            <Link to="/especial" target="_blank">
+            Encuesta
+            </Link>
+
+
         </div>
     )
 }

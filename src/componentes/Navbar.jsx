@@ -97,8 +97,8 @@ export function Navbar({ onOpenLogin }) {
                 />
               )}
               <div className="hidden sm:block leading-4 text-right">
-                <p className="text-sm font-medium">{user?.nombre}</p>
-                <p className="text-xs text-gray-400">{user?.cargo}</p>
+                <p className="text-sm font-medium">{user?.fullName}</p>
+                <p className="text-xs text-gray-400">{user?.position}</p>
               </div>
               <button onClick={logout} className={actionBtn}>
                 Cerrar sesión

@@ -1,4 +1,5 @@
 import './App.css'
+import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Inicio } from './paginas/Inicio'
 import { Nosotros } from './paginas/Nosotros'
@@ -7,12 +8,16 @@ import { Detalle } from './paginas/Detalle'
 import { FormContacto } from './paginas/Contacto' 
 import { Navbar } from './componentes/navbar'
 import { Footer } from './componentes/Footer'
+import { LoginForm } from './componentes/LoginForm'
+import Modal from './componentes/Modal'
 
 function App() {
 
+   const [loginOpen, setLoginOpen] = useState(false);
+
   return (
     <>
-      <Navbar/>
+      <Navbar onOpenLogin={() => setLoginOpen(true)}/>
       <Routes>
         <Route path='/' element={<Inicio/>}></Route>
         <Route path='/nosotros' element={<Nosotros/>}></Route>
@@ -22,6 +27,11 @@ function App() {
       </Routes>
       <Footer/>
       
+      <Modal open={loginOpen} onClose={() => setLoginOpen(false)}>
+        <LoginForm onSuccess={() => setLoginOpen(false)} />
+      </Modal>
+
+
     </>
   )
 }
